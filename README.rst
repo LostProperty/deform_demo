@@ -27,9 +27,9 @@ TODO
 1. Done - Display a form for a recipe
 
 2. Save a recipe (to the DB)
- - new branch and scaffold a new project
- - integrate the scaffolding
- - use postgres DB
+ - end point to create an entry in the DB
+ - form to create an entry in the DB
+ - mapping on post to model? How best to handle this
  - validation error
  - map with pstucts/cstructs?
  - can we have custom html?
@@ -49,3 +49,6 @@ TODO
 10. Do alternative version with jinja2 instead of chameleon
 
 11. Password protect CMS
+
+12. use postgres DB
+ - Add alelmbic

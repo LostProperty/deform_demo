@@ -18,7 +18,8 @@ requires = [
     'zope.sqlalchemy',
     'waitress',
     'colander',
-    'deform'
+    'deform',
+    'MySQL-python'
     ]
 
 setup(name='deform_demo',
