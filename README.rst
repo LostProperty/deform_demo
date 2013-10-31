@@ -2,7 +2,14 @@
 Deform Demo
 ===========
 
-Example of how to make a CMS with Deform, Colander and Pyramdi.
+Example of how to make a CMS with Deform, Colander, Peppercorn and Pyramid.
+
+To Setup the Project
+====================
+::
+
+    mkvirtualenv deform_demo
+    python setup.py develop
 
 TODO
 ====
