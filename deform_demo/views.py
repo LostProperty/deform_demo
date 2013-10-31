@@ -47,8 +47,10 @@ class Person(colander.MappingSchema):
             cols=60,
             css_class=''
         ),
-        description='Description of the Recipe'
+        description='Description of the Recipe',
     )
+    rank = colander.SchemaNode(colander.Int(),
+                      validator=colander.Range(0, 9))
 
 # TODO: move forms stuff to it's own view file
 @view_config(route_name='form', renderer='templates/form.pt')
@@ -56,5 +58,19 @@ def form(request):
     schema = Person()
     form = Form(schema, buttons=('submit',))
 
-    # TODO: check for post, save to the DB
-    return {"form": form.render()}
+    if request.POST:
+        try:
+            form.validate(request.POST.items())
+            # Mapping to DB model goes here (how to use colander?)
+            # item = MyModel()
+            # item.name = 'petey'
+            # item.value = 42
+            # DBSession.add(item)
+            # TODO: redirect to list of items here (base template to be used)
+            # To do add flash
+        except deform.ValidationFailure as e:
+            render_form = e.render()
+    else:
+        render_form = form.render() #recipe_dict)
+
+    return {"form": render_form}
