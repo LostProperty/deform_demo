@@ -16,6 +16,11 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
     config.include('pyramid_chameleon')
     config.add_static_view('static', 'static', cache_max_age=3600)
+    config.add_static_view('deform_static', 'deform:static')
+
+    # TODO: break out these routes to a seperate file
     config.add_route('home', '/')
-    config.scan()
+    config.add_route('form', '/form')
+
+    config.scan() # we can scan a dir here
     return config.make_wsgi_app()

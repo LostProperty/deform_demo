@@ -18,7 +18,8 @@ To Run
 ======
 ::
 
-    pserve development.ini
+    pserve development.ini --reload
+
 
 TODO
 ====
@@ -27,7 +28,8 @@ TODO
 
 2. Save a recipe (to the DB)
  - new branch and scaffold a new project
- - user mysql DB
+ - integrate the scaffolding
+ - use postgres DB
  - validation error
  - map with pstucts/cstructs?
  - can we have custom html?
