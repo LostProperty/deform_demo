@@ -8,7 +8,8 @@ requires = [
     'pyramid_chameleon',
     'pyramid',
     'deform',
-    'nose'
+    'nose',
+    'webtest'
 ]
 
 setup(

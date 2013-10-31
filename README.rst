@@ -14,8 +14,7 @@ To Setup the Project
 TODO
 ====
 
-1. Display a form for a recipe:
- - add more fields (using colander)
+1. Done - Display a form for a recipe
 
 2. Save a recipe (to the DB)
  - map with pstucts/cstructs?
@@ -29,8 +28,10 @@ TODO
 
 6. Use different model for ingredients (auto-complete)
 
-7. Check setup.py if written correctly
+8. Add users form with custom validation. Double email
 
-8. Do alternative version with jinja2 instead of chameleon
+9. Check setup.py if written correctly
 
-9. Password protect
+10. Do alternative version with jinja2 instead of chameleon
+
+11. Password protect CMS
