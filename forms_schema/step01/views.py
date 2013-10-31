@@ -26,8 +26,8 @@ class ProjectorViews(object):
         myform = Form(schema, buttons=('submit',))
 
         # TODO: check for post, save to the DB
-        #return {"form": myform.render()}
-        return {"form": self.render_form(myform)}
+        return {"form": myform.render()}
+        #return {"form": self.render_form(myform)}
 
     def render_form(self, form, appstruct=colander.null, submitted='submit',
                     success=None, readonly=False, is_i18n=False):
@@ -76,6 +76,6 @@ class ProjectorViews(object):
             #'locale': locale_name,
             #'demos':self.get_demos(),
             #'title':self.get_title(),
-            'css_links':reqts['css'],
-            'js_links':reqts['js'],
+            # 'css_links':reqts['css'],
+            # 'js_links':reqts['js'],
             }
