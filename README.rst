@@ -17,10 +17,12 @@ TODO
 1. Done - Display a form for a recipe
 
 2. Save a recipe (to the DB)
+ - new branch and scaffold a new project
+ - validation error
  - map with pstucts/cstructs?
+ - can we have custom html?
 
 3. Edit a recipe
-  - make it look nicer
 
 4. Delete a recipe
 
