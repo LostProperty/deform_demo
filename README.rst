@@ -27,14 +27,10 @@ TODO
 1. Done - Display a form for a recipe
 
 2. Save a recipe (to the DB)
-
- - mapping on post to model? How best to handle this
-
- - map with pstucts/cstructs?
-
- - can we have custom html?
-
+ - make into a recipe
  - custom validation error
+ - check for unique on form
+ - can we have custom html? (Deform Retail like Rob suggested)
 
 3. Edit a recipe
 

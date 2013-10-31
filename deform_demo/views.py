@@ -39,7 +39,7 @@ try it again.
 # TODO: move schema to it's own file
 class Person(colander.MappingSchema):
     name = colander.SchemaNode(colander.String())
-    description = colander.SchemaNode(
+    value = colander.SchemaNode(
         colander.String(),
         missing='',
         widget=deform.widget.TextAreaWidget(
@@ -60,17 +60,17 @@ def form(request):
 
     if request.POST:
         try:
-            app_struct = form.validate(request.POST.items())
-            serialized = schema.serialize(app_struct)
-            import pdb; pdb.set_trace()
-            #item.set_values(app_struct)
-            # Mapping to DB model goes here (how to use colander?)
-            # item = MyModel()
-            # item.name = 'petey'
-            # item.value = 42
-            # DBSession.add(item)
+            appstruct = form.validate(request.POST.items())
+            #serialized = schema.serialize(app_struct)
+            item = MyModel()
+            #TODO: do we need the schema here too (for relationship mapping)?
+            item = set_values(item, appstruct)
+            DBSession.add(item)
             # TODO: redirect to list of items here (base template to be used)
             # To do add flash
+            render_form = form.render()
+
+        #TODO: can we also catch sqlalchemy.exc.IntegrityError and show to the user
         except deform.ValidationFailure as e:
             render_form = e.render()
     else:
@@ -79,7 +79,7 @@ def form(request):
     return {"form": render_form}
 
 
-# def merge_session_with_post(session, post):
-#     for key,value in post:
-#         setattr(session, key, value)
-#     return session
+def set_values(item, appstruct):
+    for key, value in appstruct.items():
+        setattr(item, key, value)
+    return item
