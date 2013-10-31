@@ -7,7 +7,8 @@ README = open(os.path.join(here, 'README.rst')).read()
 requires = [
     'pyramid_chameleon',
     'pyramid',
-    'deform'
+    'deform',
+    'nose'
 ]
 
 setup(
