@@ -10,6 +10,15 @@ To Setup the Project
 
     mkvirtualenv deform_demo
     python setup.py develop
+    initialize_deform_demo_db development.ini
+
+This will set-up an sqlite DB.
+
+To Run
+======
+::
+
+    pserve development.ini
 
 TODO
 ====
@@ -18,6 +27,7 @@ TODO
 
 2. Save a recipe (to the DB)
  - new branch and scaffold a new project
+ - user mysql DB
  - validation error
  - map with pstucts/cstructs?
  - can we have custom html?

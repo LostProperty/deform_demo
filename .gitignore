@@ -1,2 +1,2 @@
-UNKNOWN.egg-info/
+*.egg-info
 *.pyc
