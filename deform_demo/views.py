@@ -60,7 +60,10 @@ def form(request):
 
     if request.POST:
         try:
-            form.validate(request.POST.items())
+            app_struct = form.validate(request.POST.items())
+            serialized = schema.serialize(app_struct)
+            import pdb; pdb.set_trace()
+            #item.set_values(app_struct)
             # Mapping to DB model goes here (how to use colander?)
             # item = MyModel()
             # item.name = 'petey'
@@ -74,3 +77,9 @@ def form(request):
         render_form = form.render() #recipe_dict)
 
     return {"form": render_form}
+
+
+# def merge_session_with_post(session, post):
+#     for key,value in post:
+#         setattr(session, key, value)
+#     return session

@@ -28,15 +28,16 @@ TODO
 
 2. Save a recipe (to the DB)
  - mapping on post to model? How best to handle this
- - validation error
  - map with pstucts/cstructs?
  - can we have custom html?
+ - custom validation error
 
 3. Edit a recipe
 
 4. Delete a recipe
 
-5. Use different model for ingredients (drop-down)
+5. Use different model for ingredients (drop-down). Related model
+ - have generic save code (introspect schema? extra attribute?)
 
 6. Use different model for ingredients (auto-complete)
 
@@ -50,3 +51,5 @@ TODO
 
 12. use postgres DB
  - Add alelmbic
+
+13. Tests
