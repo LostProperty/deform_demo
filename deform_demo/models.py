@@ -1,7 +1,6 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column,
-    #Index,
     Float,
     ForeignKey,
     Integer,
@@ -22,7 +21,7 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 
-# TODO: move to it's own file
+# TODO: move to it's own file utils
 class ColanderModelMixin(object):
 
     def set_values(self, app_struct):
@@ -30,16 +29,12 @@ class ColanderModelMixin(object):
         Used to update/add the values of the model
         """
         for key, value in app_struct.items():
-            # TODO: if it's a dict can we do some clever mapping and saving here?
+            # TODO? if it's a dict can we do some clever mapping and saving here?
             if isinstance(value, list) == False:
-                try:
-                    setattr(self, key, value)
-                except:
-                    import pdb; pdb.set_trace()
+                setattr(self, key, value)
 
 
 class Ingredient(Base, ColanderModelMixin):
-    # TODO: check if we should be using plurals
     __tablename__ = 'ingredient'
     id = Column(Integer, primary_key=True)
     name = Column(String(255))

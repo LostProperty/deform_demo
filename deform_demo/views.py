@@ -43,7 +43,6 @@ def set_values(schema, appstruct):
     model = schema.Meta.model
     item = model()
 
-
     item.set_values(appstruct)
     DBSession.add(item)
     DBSession.flush()
