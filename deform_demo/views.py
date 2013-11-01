@@ -5,8 +5,8 @@ from deform import Form
 
 from .models import (
     DBSession,
-    #Recipe,
-    #Ingredient,
+    Recipe,
+    Ingredient,
 )
 
 from .schemas import (
@@ -23,9 +23,8 @@ def form(request):
         try:
             appstruct = form.validate(request.POST.items())
             #serialized = schema.serialize(app_struct)
-            #TODO: do we need the schema here too (for relationship mapping)?
-            item = set_values(schema, appstruct)
-            DBSession.add(item)
+            set_values(schema, appstruct)
+
             # TODO: redirect to list of items here (base template to be used)
             # To do add flash
             render_form = form.render()
@@ -34,37 +33,39 @@ def form(request):
         except deform.ValidationFailure as e:
             render_form = e.render()
     else:
-        render_form = form.render() #recipe_dict)
+        render_form = form.render()
 
     return {"form": render_form}
 
 
 def set_values(schema, appstruct):
-    import pdb; pdb.set_trace()
-    # do we have the schema name in the app struct? I'd prefer to work with the schema and it's data
+    # TODO: should we move this function to be a method on the schema (added with a mixin)
     model = schema.Meta.model
     item = model()
-    # get model attributes
-    # loop the appstruct and set these
-    # get the models relationships
-    # loop for their existence in the appstruct and set these
-    # save_related_items
-    for key, value in appstruct.items():
-        setattr(item, key, value)
-        # if isinstance(value, list):
-        #     import pdb; pdb.set_trace()
-        #     #for key, value in appstruct.items():
-        # else:
-        #     setattr(item, key, value)
-    return item
 
-# def save_related_items(self, related_items, item, model):
-#     """
-#     Save the data for the related models. Could we move this code to the model?
-#     """
-#     for related_item in related_items:
-#         # Note this is still recipe specific, but better than before
-#         related_item['recipe_id'] = item.id
-#         model_instance = model()
-#         model_instance.set_values(related_item)
-#         DBSession.add(model_instance)
+    for key, value in appstruct.items():
+        # TODO: can we switch the block and lose the line below?
+        try:
+            setattr(item, key, value)
+        except: # TypeError
+            pass
+    DBSession.add(item)
+    DBSession.flush()
+
+    # set the related fields
+    relations = schema.Meta.relations
+    for relation_name, relation_model in relations.items():
+        related_items = appstruct.pop(relation_name)
+        save_related_items(related_items, item, relation_model)
+
+
+def save_related_items(related_items, item, model):
+    """
+    Save the data for the related models.
+    """
+    for related_item in related_items:
+        # Note this is still recipe specific, but better than before
+        related_item['recipe_id'] = item.id
+        model_instance = model()
+        model_instance.set_values(related_item)
+        DBSession.add(model_instance)

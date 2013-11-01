@@ -2,8 +2,8 @@ import colander
 import deform
 
 from .models import (
-    Recipe,
-    Ingredient,
+    Recipe as RecipeModel,
+    Ingredient as IngredientModel,
 )
 
 class Ingredient(colander.MappingSchema):
@@ -11,9 +11,6 @@ class Ingredient(colander.MappingSchema):
     # TODO: can we display in-line?
     name = colander.SchemaNode(colander.String())
     quantity = colander.SchemaNode(colander.String())
-
-    class Meta:
-        model = Ingredient
 
 
 class Ingredients(colander.SequenceSchema):
@@ -36,7 +33,7 @@ class Recipe(colander.MappingSchema):
     ingredients = Ingredients()
 
     class Meta:
-        model = Recipe
-        #fields = ['title', 'forenames', 'surname', 'email']
-
-# TODO: add recipe ingredients
+        model = RecipeModel
+        # NOTE: the dictionary key must match the MappingSchema attribute
+        relations = {'ingredients': IngredientModel}
+        #relationships['instructions'] = InstructionModel

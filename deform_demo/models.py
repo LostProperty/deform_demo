@@ -22,7 +22,18 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 
-class Ingredient(Base):
+# TODO: move to it's own file
+class ColanderModelMixin(object):
+
+    def set_values(self, app_struct):
+        """
+        Used to update/add the values of the model
+        """
+        for key, value in app_struct.items():
+            setattr(self, key, value)
+
+
+class Ingredient(Base, ColanderModelMixin):
     # TODO: check if we should be using plurals
     __tablename__ = 'ingredient'
     id = Column(Integer, primary_key=True)
@@ -31,12 +42,10 @@ class Ingredient(Base):
     quantity = Column(Float)
 
 
-class Recipe(Base):
+class Recipe(Base, ColanderModelMixin):
     __tablename__ = 'recipe'
     id = Column(Integer, primary_key=True)
     name = Column(Text) # TODO: force unique here colander or both?
     description = Column(String(2550))
 
     ingredients = relationship(Ingredient, backref='recipe', cascade='all,delete')
-
-#Index('my_index', MyModel.name, unique=True, mysql_length=255)
