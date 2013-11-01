@@ -16,11 +16,9 @@ def form(request):
     if request.POST:
         try:
             appstruct = form.validate(request.POST.items())
-            #serialized = schema.serialize(app_struct)
-            schema.set_values(appstruct)
-
+            schema.save_to_model(appstruct)
+            request.session.flash('Item has been saved.')
             # TODO: redirect to list of items here (base template to be used)
-            # To do add flash
             render_form = form.render()
 
         #TODO: can we also catch sqlalchemy.exc.IntegrityError and show to the user

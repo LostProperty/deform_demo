@@ -36,20 +36,17 @@ TODO
 
 4. Delete a recipe
 
-5. Use different model for ingredients (drop-down). Related model
- - have generic save code (introspect schema? extra attribute?)
+5. Use different model for RecipeIngredients (drop-down).
 
 6. Use different model for ingredients (auto-complete)
 
 8. Add users form with custom validation. Double email
 
-9. Check setup.py if written correctly
+9. Do alternative version with jinja2 instead of chameleon
 
-10. Do alternative version with jinja2 instead of chameleon
+10. Password protect CMS
 
-11. Password protect CMS
-
-12. use postgres DB
+11. use postgres DB
  - Add alelmbic
 
-13. Tests
+12. Tests

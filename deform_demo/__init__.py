@@ -1,10 +1,11 @@
 from pyramid.config import Configurator
+from pyramid.session import UnencryptedCookieSessionFactoryConfig
 from sqlalchemy import engine_from_config
 
 from .models import (
     DBSession,
     Base,
-    )
+)
 
 
 def main(global_config, **settings):
@@ -18,6 +19,8 @@ def main(global_config, **settings):
     config.include('pyramid_chameleon')
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_static_view('deform_static', 'deform:static')
+    session_factory = UnencryptedCookieSessionFactoryConfig('Ye7eevoht7faht ')
+    config.set_session_factory(session_factory)
 
     # TODO: break out these routes to a seperate file
     config.add_route('home', '/')

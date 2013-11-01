@@ -10,7 +10,7 @@ from .models import (
 
 class SqlAlchemyModelMixin(object):
 
-    def set_values(self, appstruct):
+    def save_to_model(self, appstruct):
         """
         Save the appstruct data to the DB
         """
