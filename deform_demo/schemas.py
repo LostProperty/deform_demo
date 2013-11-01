@@ -7,7 +7,7 @@ from .models import (
     Ingredient as IngredientModel,
 )
 
-
+# TODO: move to a utils file
 class SqlAlchemyModelMixin(object):
 
     def save_to_model(self, appstruct):

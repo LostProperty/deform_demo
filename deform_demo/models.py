@@ -29,7 +29,6 @@ class ColanderModelMixin(object):
         Used to update/add the values of the model
         """
         for key, value in app_struct.items():
-            # TODO? if it's a dict can we do some clever mapping and saving here?
             if isinstance(value, list) == False:
                 setattr(self, key, value)
 
