@@ -12,7 +12,7 @@ To Setup the Project
     python setup.py develop
     initialize_deform_demo_db development.ini
 
-This will set-up an sqlite DB.
+This uses an MySQL DB called deform_demo.
 
 To Run
 ======
@@ -30,6 +30,8 @@ TODO
 
 #. List recipes
 
+#. Add recipe instructions
+
 #. Edit a recipe
 
 #. Delete a recipe
@@ -39,6 +41,12 @@ TODO
 #. Custom validation error (matching fields)
 
 #. Custom html? (Deform Retail like Rob suggested)
+
+#. Add Alembic
+
+#. Add extra fields
+
+#. Add extra models, add to CMS with minimal code (with-in reason)
 
 #. Use different model for RecipeIngredients (drop-down).
 

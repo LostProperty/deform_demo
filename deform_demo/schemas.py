@@ -14,24 +14,25 @@ class SqlAlchemyModelMixin(object):
         """
         Save the appstruct data to the DB
         """
+        # Save the main model
         item = self.Meta.model()
         item.set_values(appstruct)
         DBSession.add(item)
         DBSession.flush()
 
+        # Save the related models
         relations = self.Meta.relations
         for relation_name, relation_model in relations.items():
             related_items = appstruct.pop(relation_name)
-            self.save_related_items(related_items, item, relation_model)
+            self.save_related_items(item, related_items, relation_model)
 
-    def save_related_items(self, related_items, item, model):
+    def save_related_items(self, item, related_items, related_model):
         """
         Save the data for the related models.
         """
         for related_item in related_items:
-            # Note this is still recipe specific, but better than before, move this data to Meta
             related_item[self.Meta.model_id] = item.id
-            model_instance = model()
+            model_instance = related_model()
             model_instance.set_values(related_item)
             DBSession.add(model_instance)
 

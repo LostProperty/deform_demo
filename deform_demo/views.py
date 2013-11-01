@@ -22,6 +22,7 @@ def form(request):
             render_form = form.render()
 
         #TODO: can we also catch sqlalchemy.exc.IntegrityError and show to the user
+        # Or should all SQL errors be covered by Colander validation?
         except deform.ValidationFailure as e:
             render_form = e.render()
     else:
