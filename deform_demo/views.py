@@ -8,7 +8,7 @@ from .schemas import (
 )
 
 
-@view_config(route_name='home', renderer='templates/form.pt')
+@view_config(route_name='home', renderer='templates/form.jinja2')
 def form(request):
     schema = Recipe()
     form = Form(schema, buttons=('submit',))
