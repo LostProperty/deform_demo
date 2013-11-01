@@ -2,7 +2,7 @@
 Deform Demo
 ===========
 
-Example of how to make a CMS with Deform, Colander, Peppercorn and Pyramid.
+Example of how to make a CMS with Deform, Colander and Pyramid.
 
 To Setup the Project
 ====================
@@ -24,29 +24,28 @@ To Run
 TODO
 ====
 
-1. Done - Display a form for a recipe
+#. Done - Display a form for a recipe
 
-2. Save a recipe (to the DB)
- - make into a recipe
- - custom validation error
- - check for unique on form
- - can we have custom html? (Deform Retail like Rob suggested)
+#. Done - Save a recipe (to the DB)
 
-3. Edit a recipe
+#. List recipes
 
-4. Delete a recipe
+#. Edit a recipe
 
-5. Use different model for RecipeIngredients (drop-down).
+#. Delete a recipe
 
-6. Use different model for ingredients (auto-complete)
+#. check for unique on form (Colander and SQLAlchemy)
 
-8. Add users form with custom validation. Double email
+#. Custom validation error (matching fields)
 
-9. Do alternative version with jinja2 instead of chameleon
+#. Custom html? (Deform Retail like Rob suggested)
 
-10. Password protect CMS
+#. Use different model for RecipeIngredients (drop-down).
 
-11. use postgres DB
- - Add alelmbic
+#. Use different model for ingredients (auto-complete)
 
-12. Tests
+#. PW Protect. Add users form with custom validation.
+
+#. Use Postgres DB
+
+#. Tests
