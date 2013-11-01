@@ -43,12 +43,8 @@ def set_values(schema, appstruct):
     model = schema.Meta.model
     item = model()
 
-    for key, value in appstruct.items():
-        # TODO: can we switch the block and lose the line below?
-        try:
-            setattr(item, key, value)
-        except: # TypeError
-            pass
+
+    item.set_values(appstruct)
     DBSession.add(item)
     DBSession.flush()
 
