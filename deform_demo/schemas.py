@@ -30,7 +30,7 @@ class SqlAlchemyModelMixin(object):
         """
         for related_item in related_items:
             # Note this is still recipe specific, but better than before, move this data to Meta
-            related_item['recipe_id'] = item.id
+            related_item[self.Meta.model_id] = item.id
             model_instance = model()
             model_instance.set_values(related_item)
             DBSession.add(model_instance)
