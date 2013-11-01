@@ -8,7 +8,8 @@ from .models import (
 
 
 def main(global_config, **settings):
-    """ This function returns a Pyramid WSGI application.
+    """
+    This function returns a Pyramid WSGI application.
     """
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
@@ -20,7 +21,6 @@ def main(global_config, **settings):
 
     # TODO: break out these routes to a seperate file
     config.add_route('home', '/')
-    config.add_route('form', '/form')
 
     config.scan() # we can scan a dir here
     return config.make_wsgi_app()
