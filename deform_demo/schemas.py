@@ -26,32 +26,32 @@ class SqlAlchemyModelMixin(object):
         relations = self.Meta.relations
         for relation_name, relation_model in relations.items():
             related_items = appstruct.pop(relation_name)
-            # The below is only needed on edit
-            self.delete_related_items(item, relation_model)
-            self.save_related_items(item, related_items, relation_model)
+            self.update_related_items(item, related_items, relation_model)
 
-    def delete_related_items(self, item, related_model):
-        related_items = DBSession.query(related_model).filter(self.Meta.model_id == item.id)
+    def update_related_items(self, item, new_related_items, related_model):
+        """
+        Save related model fields to the DB
+        """
+        # Delete all rows here
+        model_field = getattr(related_model, self.Meta.model_id)
+        related_items = DBSession.query(related_model).filter(model_field == item.id)
         for related_item in related_items:
             DBSession.delete(related_item)
-
-    def save_related_items(self, item, related_items, related_model):
-        """
-        Save the data for the related models.
-        """
-        for related_item in related_items:
-            related_item[self.Meta.model_id] = item.id
-            model_instance = related_model()
-            model_instance.set_values(related_item)
-            DBSession.add(model_instance)
+        # Add new rows
+        for new_related_item in new_related_items:
+            related_model_instance = related_model()
+            new_related_item[self.Meta.model_id] = item.id
+            related_model_instance.set_values(new_related_item)
+            DBSession.merge(related_model_instance)
 
     def populate_form(self, item):
         """
         Get the DB item data into a format for populating the form
         """
         item_dict = item.__dict__
-        # TODO: loop relations here
-        item_dict['ingredients'] = self.get_related_items_for_form(item, 'ingredients')
+        relations = self.Meta.relations
+        for relation_name, relation_model in relations.items():
+            item_dict[relation_name] = self.get_related_items_for_form(item, relation_name)
         return item_dict
 
     def get_related_items_for_form(self, item, name):

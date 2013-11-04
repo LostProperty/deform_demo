@@ -20,6 +20,7 @@ def form(request):
     edit_id = request.matchdict.get('id', False)
     edit_item = False
     if edit_id:
+        #TODO: 404 here if id is missing
         edit_item = DBSession.query(RecipeModel).filter_by(id=edit_id).one()
 
     if request.POST:
