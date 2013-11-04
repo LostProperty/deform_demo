@@ -24,6 +24,7 @@ def main(global_config, **settings):
     config.set_session_factory(session_factory)
 
     # TODO: break out these routes to a seperate file
-    config.add_route('home', '/')
+    config.add_route('list', '/')
+    config.add_route('add', '/add')
     config.scan()
     return config.make_wsgi_app()
