@@ -28,13 +28,21 @@ TODO
 
 #. Done - Save a recipe (to the DB)
 
-#. List recipes
+#. Done - List recipes
 
-#. Add recipe instructions
+#. Done - Add recipe instructions
 
-#. Edit a recipe
+#. Done - Edit a recipe
 
-#. Delete a recipe
+#. Edit recipe instructions
+
+#. Done - Delete a recipe
+
+#. Add extra models, add to CMS with minimal code (with-in reason)
+
+#. Pagnation
+
+#. Search
 
 #. check for unique on form (Colander and SQLAlchemy)
 
@@ -46,8 +54,6 @@ TODO
 
 #. Add extra fields
 
-#. Add extra models, add to CMS with minimal code (with-in reason)
-
 #. Use different model for RecipeIngredients (drop-down).
 
 #. Use different model for ingredients (auto-complete)
@@ -57,3 +63,5 @@ TODO
 #. Use Postgres DB
 
 #. Tests
+
+#. Prompt on delete
